@@ -1,0 +1,45 @@
+# --- history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY
+
+# --- completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# --- prompt (minimal noir)
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats ' (%b)'
+setopt PROMPT_SUBST
+PROMPT='%F{white}%~%f%F{240}${vcs_info_msg_0_}%f %F{white}❯%f '
+
+# --- widgets
+# syntax highlighting (must be last-ish)
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+# history substring search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# --- keybindings
+bindkey -e
+bindkey '^[[H'  beginning-of-line   # Home
+bindkey '^[[F'  end-of-line         # End
+bindkey '^[[3~' delete-char         # Delete
+bindkey '^H'    backward-kill-word  # Ctrl+Backspace
+
+# --- aliases
+alias ls='ls --color=auto'
+alias ll='ls -lah --color=auto'
+alias grep='grep --color=auto'
+alias cls='clear'
+alias cz='chezmoi'
+alias czd='chezmoi diff'
+alias cza='chezmoi add'
+alias czap='chezmoi apply'
