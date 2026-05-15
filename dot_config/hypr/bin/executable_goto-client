@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Focuses to available open clients
+# To be used with mapping command
+# rofi -show combi -modes combi -combi-modes "clients:path/to/<this-script>,drun" -no-show-
+
+hash rofi 2>/dev/null || exit
+hash hyprctl 2>/dev/null || exit
+hash jq 2>/dev/null || exit
+
+hyprctl clients -j | jq -r '.[] 
+  | select(.mapped==true) 
+  | select(.workspace.name | contains("special") | not) 
+  | .class + " - " + (.pid|tostring) + " - " + .title' 
+
+out=$(echo "$1" | awk '{print $3}')
+[ -z "$out" ] || {
+  killall -q rofi &>/dev/null
+  hyprctl dispatch focuswindow "pid:$out"
+  hyprctl dispatch alterzorder top,"pid:$out"
+}
+exit 0
+# vim: ft=sh

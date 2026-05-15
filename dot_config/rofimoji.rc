@@ -1,0 +1,7 @@
+action = [copy, type]
+files = [emoticons, emojis, kaomoji, nerd]
+skin-tone = moderate
+max-recent = 5
+selector = rofi
+clipboarder = wl-copy
+typer = wtype
