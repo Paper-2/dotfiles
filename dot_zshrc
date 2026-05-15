@@ -43,3 +43,6 @@ alias cz='chezmoi'
 alias czd='chezmoi diff'
 alias cza='chezmoi add'
 alias czap='chezmoi apply'
+
+# --- fastfetch (non-login interactive shells; login shells use /etc/profile.d/99-fastfetch.sh)
+[[ ! -o login ]] && fastfetch
