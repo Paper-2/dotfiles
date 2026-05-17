@@ -1,0 +1,16 @@
+# .chezmoiignore — files excluded from chezmoi deployment
+#
+# HyDE manages the files listed below via its own installer and theme engine.
+# Tracking them here would overwrite HyDE's state on every `chezmoi apply`.
+# Add them to the SOURCE directory only if you intentionally want to pin them.
+
+dot_config/hypr/hyprland.conf
+dot_config/hypr/keybindings.conf
+dot_config/hypr/windowrules.conf
+dot_config/hypr/animations.conf
+dot_config/hypr/animations/**
+dot_config/hypr/themes/**
+dot_config/hypr/shaders/**
+dot_config/hypr/workflows/**
+dot_config/waybar/**
+dot_config/wofi/**
