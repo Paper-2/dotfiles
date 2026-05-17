@@ -1,3 +1,7 @@
+# YubiKey SSH identities
+export SSH_YUBKEY=~/.ssh/id_yubikey
+export SSH_YUBKEY2=~/.ssh/id_yubikey2
+
 # Autostart Hyprland on TTY1 login
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
     exec start-hyprland
